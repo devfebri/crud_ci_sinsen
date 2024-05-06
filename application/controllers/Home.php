@@ -17,3 +17,4 @@ class Home extends CI_Controller {
 		$this->load->view('halaman_about');
 	}
 }
+	

@@ -4,7 +4,7 @@
  		<div class="col-sm-12">
  			<div class="page-title-box">
 
- 				<h4 class="page-title">Produk
+ 				<h4 class="page-title">Transaksi
  					<button type="button" class="btn btn-primary waves-effect waves-light float-right btn-small" data-toggle="modal" data-animation="bounce" data-target="#tambahmodal">Tambah Data</button>
  				</h4>
  			</div>
@@ -30,7 +30,7 @@
  			</form>
  		</div>
  	</div>
- 	<h5>Total Rows : <?php echo $total_rows ?></h5>
+ 	<!-- <h5>Total Rows : <?php echo $total_rows ?></h5> -->
  	<!-- end page title end breadcrumb -->
 
  	<div class="row">
@@ -39,46 +39,35 @@
 
 
  				<div class="card-body">
- 					<!-- <?php print_r($dataproduk); ?> -->
+ 					<!-- <?php print_r($datatransaksi); ?> -->
 
 
  					<table id="datatable2" class="table table-bordered">
  						<thead>
  							<tr>
  								<th>No</th>
- 								<th>Name</th>
- 								<th>Harga</th>
+ 								<th>Tanggal</th>
+ 								<th>Total</th>
  								<th>Status</th>
- 								<th>Kode Produk</th>
- 								<th>Foto</th>
  								<th>Aksi</th>
  							</tr>
  						</thead>
  						<tbody>
  							<?php
-								$no = 1;
-								foreach ($dataproduk as $row) : ?>
+								$i = 1;
+								foreach ($datatransaksi as $row) :
+								?>
  								<tr>
- 									<td><?= ++$start ?></td>
- 									<td><?= $row['nama'] ?></td>
- 									<td><?= $row['harga'] ?></td>
- 									<?php if ($row['status'] == 1) {
-											$status = 'Ya';
-										} else {
-											$status = 'Tidak';
-										} ?>
- 									<td><?= $status ?></td>
- 									<td><?= $row['kode_produk'] ?></td>
- 									<td><?= $row['foto'] ?></td>
- 									<td>
- 										<button class="tabledit-edit-button btn btn-sm btn-warning" style="float: none; margin: 5px;" data-toggle="modal" data-animation="bounce" data-target="#editmodal-<?= $row['id'] ?>"><span class="ti-pencil"></span></button>
- 										<a href="<?= base_url('produk/delete') ?>/<?= $row['id'] ?>" class="tabledit-delete-button btn btn-sm btn-danger" style="float: none; margin: 5px;"><span class="ti-trash"></span></a>
- 									</td>
+ 									<td><?= ++$i ?></td>
+ 									<td><?= $row['tanggal_trx'] ?></td>
+ 									<td><?= $row['total'] ?></td>
+ 									<td><?= $row['status'] ?></td>
  								</tr>
+
  							<?php endforeach; ?>
  						</tbody>
  					</table>
- 					<?php echo $this->pagination->create_links(); ?>
+
  				</div>
  			</div>
  		</div> <!-- end col -->
@@ -100,37 +89,50 @@
  			<form action="<?php echo base_url() . 'produk/tambah'; ?>" method="post">
  				<div class="modal-body">
  					<div class="form-group row">
- 						<label for="kode_produk" class="col-sm-2 col-form-label">Kode Produk </label>
- 						<div class="col-sm-10">
- 							<input class="form-control" name="kode_produk" type="text" id="kode_produk">
+ 						<label for="pilihproduk" class="col-sm-3 col-form-label">Pilih Produk </label>
+ 						<div class="col-sm-9">
+ 							<select class="form-control" name="pilihproduk" id="pilihproduk">
+ 								<option value="">-pilih-</option>
+								<?php foreach($dataproduk as $row1): ?>
+ 								<option value="<?= $row1['id'] ?>"><?= $row1['nama'] ?></option>
+								<?php endforeach; ?>
+ 							</select>
  						</div>
  					</div>
+ 					<!-- <div class="form-group row">
+ 						<label for="tanggal_trx" class="col-sm-3 col-form-label">Tanggal Transaksi</label>
+ 						<div class="col-sm-9">
+ 							<input class="form-control" name="tanggal_trx" type="date" id="tanggal_trx">
+ 						</div>
+ 					</div> -->
  					<div class="form-group row">
- 						<label for="nama" class="col-sm-2 col-form-label">Nama </label>
- 						<div class="col-sm-10">
- 							<input class="form-control" name="nama" type="text" id="nama">
+ 						<label for="harga" class="col-sm-3 col-form-label">Harga Produk</label>
+ 						<div class="col-sm-9">
+ 							<input class="form-control" name="harga" type="text" id="harga" value="1000" disabled>
  						</div>
  					</div>
+
  					<div class="form-group row">
- 						<label for="harga" class="col-sm-2 col-form-label">Harga </label>
- 						<div class="col-sm-10">
- 							<input class="form-control" name="harga" type="number" id="harga">
- 						</div>
- 					</div>
- 					<div class="form-group row">
- 						<label for="status" class="col-sm-2 col-form-label">Status </label>
- 						<div class="col-sm-10">
+ 						<label for="status" class="col-sm-3 col-form-label">Status </label>
+ 						<div class="col-sm-9">
  							<select class="form-control" name="status">
  								<option value="">-pilih-</option>
- 								<option value="1">Ya</option>
- 								<option value="0">Tidak</option>
+ 								<option value="1">New</option>
+ 								<option value="0">Process</option>
+ 								<option value="0">Close</option>
  							</select>
  						</div>
  					</div>
  					<div class="form-group row">
- 						<label for="foto" class="col-sm-2 col-form-label">Foto </label>
- 						<div class="col-sm-10">
- 							<input class="form-control" name="foto" type="text" id="foto">
+ 						<label for="qty" class="col-sm-3 col-form-label">Jumlah </label>
+ 						<div class="col-sm-9">
+ 							<input class="form-control" name="qty" type="number" id="qty">
+ 						</div>
+ 					</div>
+ 					<div class="form-group row">
+ 						<label for="subtotal" class="col-sm-3 col-form-label">Subtotal </label>
+ 						<div class="col-sm-9">
+ 							<input class="form-control" name="subtotal" type="text" id="subtotal" value="10000" disabled>
  						</div>
  					</div>
 
@@ -146,7 +148,7 @@
 
 
  <!--  Modal Edit Data -->
- <?php foreach ($dataproduk as $row1) : ?>
+ <!-- <?php foreach ($dataproduk as $row1) : ?>
  	<div class="modal fade" id="editmodal-<?= $row1['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
  		<div class="modal-dialog modal-lg">
  			<div class="modal-content">
@@ -161,7 +163,7 @@
  							<div class="col-sm-10">
  								<input class="form-control" name="kode_produk" value="<?= $row1['kode_produk'] ?>" type="text" id="kode_produk">
  							</div>
-							<input type="hidden" value="<?= $row1['id']?>" name="id">
+ 							<input type="hidden" value="<?= $row1['id'] ?>" name="id">
  						</div>
  						<div class="form-group row">
  							<label for="nama" class="col-sm-2 col-form-label">Nama </label>
@@ -199,6 +201,6 @@
  					</div>
  				</form>
  			</div><!-- /.modal-content -->
- 		</div><!-- /.modal-dialog -->
- 	</div><!-- /.modal -->
- <?php endforeach; ?>
+ </div><!-- /.modal-dialog -->
+ </div><!-- /.modal -->
+ <?php endforeach; ?> -->

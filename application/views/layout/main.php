@@ -20,6 +20,7 @@
 	<!-- Responsive datatable examples -->
 	<link href="<?= base_url(); ?>/layout/template/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
+	<link href="<?= base_url(); ?>/layout/template/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
 
 	<link href="<?= base_url(); ?>/layout/template/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url(); ?>/layout/template/assets/css/icons.css" rel="stylesheet" type="text/css">
@@ -61,6 +62,12 @@
 							<a href="<?php echo base_url('Produk/index') ?>" class="waves-effect">
 								<i class="mdi mdi-airplay"></i>
 								<span> Produk</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url('Transaksi/index') ?>" class="waves-effect">
+								<i class="mdi mdi-airplay"></i>
+								<span> Transaksi</span>
 							</a>
 						</li>
 						<li>
@@ -174,6 +181,7 @@
 	<!-- Datatable init js -->
 	<script src="<?= base_url(); ?>/layout/template/assets/pages/datatables.init.js"></script>
 
+	<script src="<?= base_url(); ?>/layout/template/assets/plugins/select2/select2.min.js" type="text/javascript"></script>
 	<!-- App js -->
 	<script src="<?= base_url(); ?>/layout/template/assets/js/app.js"></script>
 	<?php

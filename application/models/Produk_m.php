@@ -17,7 +17,7 @@ class Produk_m extends CI_Model{
 			// var_dump($this->db->get_where('produk',array('status'=>0))->num_rows());
 			// var_dump('true');
 			// die;
-			$this->db->like('nama',$carinama);
+			$this->db->like('kode_produk',$carinama);
 			return $this->db->get_where('produk', array('status' => $caristatus), $limit, $start)->result_array();
 
 		}else{
@@ -28,7 +28,7 @@ class Produk_m extends CI_Model{
 
 			}elseif($carinama != null && $caristatus == null){
 				// jika hanya carinama yg diisi
-				$this->db->like('nama', $carinama);
+				$this->db->like('kode_produk', $carinama);
 				return $this->db->get('produk', $limit, $start)->result_array();
 				//fix
 			}else{

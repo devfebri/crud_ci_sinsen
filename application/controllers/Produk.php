@@ -49,14 +49,30 @@ class Produk extends CI_Controller {
 
 	public function tambah()
 	{
+		$config['upload_path']          = './foto/';
+		$config['allowed_types']        = 'gif|jpg|png|PNG';
+		$config['max_size']             = 10000;
+		$config['max_width']            = 10000;
+		$config['max_height']           = 10000;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('foto')) {
+			echo 'gagal tambah';
+		} else {
+			$foto=$this->upload->data();
+			$foto=$foto['file_name'];
+			
+			$data = [
+				'nama'			=> $this->input->post('nama'),
+				'harga'			=> $this->input->post('harga'),
+				'status'		=> $this->input->post('status'),
+				'kode_produk'	=> $this->input->post('kode_produk'),
+				'foto'			=> $foto
+			];
+		}
+
 		
-		$data=[
-			'nama'			=> $this->input->post('nama'),
-			'harga'			=> $this->input->post('harga'),
-			'status'		=> $this->input->post('status'),
-			'kode_produk'	=> $this->input->post('kode_produk'),
-			'foto'			=> $this->input->post('foto')
-		];
 		$this->Produk_m->input_data($data,'produk');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -70,12 +86,23 @@ class Produk extends CI_Controller {
 			'kode_produk'	=> $this->input->post('kode_produk'),
 			'foto'			=> $this->input->post('foto')
 		];
+		
 		$this->Produk_m->edit_data($data, 'produk');
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	public function delete($id)
 	{
+		$this->load->helper("file");
+		$namefoto=$this->db->from('produk')->where('id',$id)->get()->row()->foto;
+		// var_dump($namefoto);
+		// die;
+		$path = './foto/'.$namefoto;
+		// @unlink($path);
+		// $path= './foto/'+$namefoto;
+		if(file_exists($path)){
+			unlink($path);
+		}
 		$this->Produk_m->delete_data($id);
 		redirect($_SERVER['HTTP_REFERER']);
 	}

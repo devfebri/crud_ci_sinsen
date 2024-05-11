@@ -162,6 +162,9 @@
 	<script src="<?= base_url(); ?>/layout/template/assets/plugins/raphael/raphael-min.js"></script>
 	<script src="<?= base_url(); ?>/layout/template/assets/plugins/morris/morris.min.js"></script>
 
+	<script src="<?= base_url(); ?>/layout/template/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
+	<script src="<?= base_url(); ?>/layout/template/assets/plugins/tiny-editable/numeric-input-example.js"></script>
+	<script src="<?= base_url(); ?>/layout/template/assets/plugins/tabledit/jquery.tabledit.js"></script>
 
 	<!-- Required datatable js -->
 	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/jquery.dataTables.min.js"></script>

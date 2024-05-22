@@ -3,14 +3,13 @@
  	<div class="row">
  		<div class="col-sm-12">
  			<div class="page-title-box">
-
  				<h4 class="page-title">Produk
  					<button type="button" class="btn btn-primary waves-effect waves-light float-right btn-small" data-toggle="modal" data-animation="bounce" data-target="#tambahmodal">Tambah Data</button>
  				</h4>
  			</div>
  			<form action="<?php echo base_url() . 'produk/index'; ?>" method="post">
  				<div class="form-group row">
- 					<label for="example-text-input" class="col-sm-2 col-form-label">Nama </label>
+ 					<label for="example-text-input" class="col-sm-2 col-form-label">Kode produk </label>
  					<div class="col-sm-10">
  						<input class="form-control" name="carinama" type="text" id="example-text-input" autocomplete="off" autofocus>
  					</div>

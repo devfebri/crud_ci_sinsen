@@ -8,31 +8,36 @@ class Produk_m extends CI_Model{
 		return $this->db->get('produk')->result_array();
 	
 	}
-	public function getProduk($limit, $start,$carinama=null,$caristatus=null){
+	public function getAllProdukResult(){
 		
+		return $this->db->get('produk')->result();
+	
+	}
+	public function getProduk($filter){
+		$carinama=$filter['carinama'];
+		$caristatus=$filter['caristatus'];
+		$limit=$filter['per_page'];
+		$start=$filter['start'];
 		//jika keduanya terisi
 		if($carinama!=null&&$caristatus!=null)
 		{
 			
-			// var_dump($this->db->get_where('produk',array('status'=>0))->num_rows());
-			// var_dump('true');
-			// die;
 			$this->db->like('kode_produk',$carinama);
-			return $this->db->get_where('produk', array('status' => $caristatus), $limit, $start)->result_array();
+			return $this->db->get_where('produk', array('status' => $caristatus), $limit, $start);
 
 		}else{
 			if($carinama==null&&$caristatus!=null){
 				// jika hanya caristatus yg diisi
-				return $this->db->get_where('produk',array('status'=>$caristatus), $limit, $start)->result_array();
+				return $this->db->get_where('produk',array('status'=>$caristatus), $limit, $start);
 				//fix
 
 			}elseif($carinama != null && $caristatus == null){
 				// jika hanya carinama yg diisi
 				$this->db->like('kode_produk', $carinama);
-				return $this->db->get('produk', $limit, $start)->result_array();
+				return $this->db->get('produk', $limit, $start);
 				//fix
 			}else{
-				return $this->db->get('produk', $limit, $start)->result_array();
+				return $this->db->get('produk', $limit, $start);
 				//fix
 			}
 		}

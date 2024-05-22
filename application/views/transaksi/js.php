@@ -1,8 +1,77 @@
 <script>
-	$("#pilihproduk").select2({
-		width: '100%'
-	});
+	let dtgltrx = $('#filtertanggaltransaksi').val(),
+		dstatus = $('#filterstatus').val();
+
+	function tampildata() {
+		let table = $('#datatable2').DataTable({
+
+			processing: true,
+			responsive: true,
+			destroy: true,
+			serverSide: true,
+			ajax: {
+				url: "<?= site_url('Transaksi/ambildata') ?>",
+				type: "POST",
+				data: function(d) {
+					d.tanggal_trx = dtgltrx;
+					d.status = dstatus;
+					return d;
+				}
+			},
+		});
+
+
+		$('#btnCari').on('click', function() {
+			dtgltrx = $('#filtertanggaltransaksi').val();
+			dstatus = $('#filterstatus').val();
+			table.ajax.reload(null, false);
+		});
+	}
+
+	function hapus(id) {
+		// alert($id);
+		Swal.fire({
+			title: 'Hapus',
+			text: `Yakin menghapus transaksi dengan id =${id} ?`,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Hapus',
+			cancelButtonText: 'Tidak'
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					type: "post",
+					url: "<?= site_url('Transaksi/hapus') ?>",
+					data: {
+						id: id,
+					},
+					dataType: "json",
+					success: function(response) {
+						if (response.sukses) {
+							Swal.fire({
+								icon: 'success',
+								title: 'Konfirmasi',
+								text: response.sukses
+							});
+							tampildata();
+						}
+					}
+				});
+			}
+		})
+	}
 	$(document).ready(function() {
+		tampildata();
+		$('.filter').on('change', function() {
+			dstatus = $('#filterstatus').val();
+			dtgltrx = $('#filtertanggaltransaksi').val();
+
+			// alert(valtanggal);
+			console.log([valstatus, valtanggal]);
+		});
+
 		$('#pilihproduk').on('change', function() {
 
 			var id_data = $(this).val();

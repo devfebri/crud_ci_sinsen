@@ -5,7 +5,7 @@
  			<div class="page-title-box">
 
  				<h4 class="page-title">Header Transakasi
- 					<button type="button" class="btn btn-primary waves-effect waves-light float-right btn-small" data-toggle="modal" data-animation="bounce" data-target="#tambahmodal">Tambah Produk</button>
+ 					<!-- <button type="button" class="btn btn-primary waves-effect waves-light float-right btn-small" data-toggle="modal" data-animation="bounce" data-target="#tambahmodal">Tambah Produk</button> -->
  				</h4>
  			</div>
  			<div class="card m-b-30">
@@ -52,26 +52,6 @@
  				</div>
  			</div>
 
- 			<form action="<?php echo base_url() . 'produk/index'; ?>" method="post">
- 				<div class="form-group row">
- 					<label for="example-text-input" class="col-sm-2 col-form-label">Nama </label>
- 					<div class="col-sm-10">
- 						<input class="form-control" name="carinama" type="text" id="example-text-input" autocomplete="off" autofocus>
- 					</div>
- 				</div>
- 				<div class="form-group row">
- 					<label for="example-text-input" class="col-sm-2 col-form-label">Status </label>
- 					<div class="col-sm-10">
- 						<select class="form-control" name="caristatus">
- 							<option value="">-pilih-</option>
- 							<option value="1">Ya</option>
- 							<option value="0">Tidak</option>
- 						</select>
- 					</div>
- 				</div>
- 				<input type="submit" class="btn btn-primary btn-block" name="submit">
- 				<br>
- 			</form>
  		</div>
  	</div>
  	<!-- <h5>Total Rows : <?php echo $total_rows ?></h5> -->
@@ -94,7 +74,6 @@
  								<th>Harga</th>
  								<th>Qty</th>
  								<th>Subtotal</th>
- 								<th>Aksi</th>
  							</tr>
  						</thead>
  						<tbody>
@@ -113,11 +92,6 @@
  									<td><?= $row['harga'] ?></td>
  									<td><?= $row['qty'] ?></td>
  									<td><?= $subtotal ?></td>
- 									<td>
-
- 										<!-- <button class="tabledit-edit-button btn btn-sm btn-warning" style="float: none; margin: 5px;" data-toggle="modal" data-animation="bounce" data-target="#"><span class="ti-pencil"></span></button> -->
- 										<a href="<?= base_url('Transaksi/deleteproduk') ?>/<?= $row['id_detail'] ?>" class="tabledit-delete-button btn btn-sm btn-danger" style="float: none; margin: 5px;"><span class="ti-trash"></span></a>
- 									</td>
  								</tr>
 
  							<?php endforeach; ?>

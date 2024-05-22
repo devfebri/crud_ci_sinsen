@@ -26,6 +26,9 @@
 	<link href="<?= base_url(); ?>/layout/template/assets/css/icons.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url(); ?>/layout/template/assets/css/style.css" rel="stylesheet" type="text/css">
 
+	<!-- Sweet Alert -->
+	<!-- <link href="<?= base_url(); ?>/layout/template/assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css"> -->
+
 </head>
 
 
@@ -71,9 +74,9 @@
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url('Home/kontak') ?>" class="waves-effect">
+							<a href="<?php echo base_url('datatable') ?>" class="waves-effect">
 								<i class="mdi mdi-airplay"></i>
-								<span> Kontak</span>
+								<span> Pencarian datatable</span>
 							</a>
 						</li>
 
@@ -146,47 +149,51 @@
 
 
 	<!-- jQuery  -->
-	<script src="<?= base_url(); ?>/layout/template/assets/js/jquery.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/popper.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/bootstrap.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/modernizr.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/detect.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/fastclick.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/jquery.slimscroll.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/jquery.blockUI.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/waves.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/jquery.nicescroll.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/js/jquery.scrollTo.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/jquery.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/popper.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/bootstrap.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/modernizr.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/detect.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/fastclick.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/jquery.slimscroll.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/jquery.blockUI.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/waves.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/jquery.nicescroll.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/jquery.scrollTo.min.js"></script>
 
 	<script src="<?= base_url(); ?>/layout/template/assets/plugins/skycons/skycons.min.js"></script>
 	<script src="<?= base_url(); ?>/layout/template/assets/plugins/raphael/raphael-min.js"></script>
 	<script src="<?= base_url(); ?>/layout/template/assets/plugins/morris/morris.min.js"></script>
 
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/tiny-editable/numeric-input-example.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/tabledit/jquery.tabledit.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/tiny-editable/numeric-input-example.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/tabledit/jquery.tabledit.js"></script>
 
 	<!-- Required datatable js -->
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
 	<!-- Buttons examples -->
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/dataTables.buttons.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/jszip.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/pdfmake.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/vfs_fonts.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/buttons.html5.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/buttons.print.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/buttons.colVis.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/jszip.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/pdfmake.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/vfs_fonts.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/buttons.html5.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/buttons.print.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/buttons.colVis.min.js"></script>
 	<!-- Responsive examples -->
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/dataTables.responsive.min.js"></script>
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
 	<!-- Datatable init js -->
-	<script src="<?= base_url(); ?>/layout/template/assets/pages/datatables.init.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/pages/datatables.init.js"></script>
 
-	<script src="<?= base_url(); ?>/layout/template/assets/plugins/select2/select2.min.js" type="text/javascript"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/plugins/select2/select2.min.js" type="text/javascript"></script>
 	<!-- App js -->
-	<script src="<?= base_url(); ?>/layout/template/assets/js/app.js"></script>
+	<script src="<?= base_url(); ?>layout/template/assets/js/app.js"></script>
+	<!-- Sweet-Alert  -->
+	<!-- <script src="<?= base_url(); ?>layout/template/assets/plugins/sweet-alert2/sweetalert2.min.js"></script> -->
+	<!-- <script src="<?= base_url(); ?>layout/template/assets/pages/sweet-alert.init.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<?php
 	if (isset($_js) && $_js)
 		$this->load->view($_js);

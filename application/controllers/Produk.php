@@ -8,38 +8,39 @@ class Produk extends CI_Controller {
 
 		// PAGINATION
 		$this->load->library('pagination');
-
 		if($this->input->post('submit')){
 			$data['carinama']=$this->input->post('carinama');
 			$data['caristatus']=$this->input->post('caristatus');
 
 			$this->session->set_userdata('carinama',$data['carinama']);
 			$this->session->set_userdata('caristatus',$data['caristatus']);
-			// var_dump($this->input->post('caristatus'));
-			// die;
 		}else{
 			$data['carinama']=$this->session->userdata('carinama');
 			$data['caristatus']= $this->session->userdata('caristatus');
 		}
 
-		$this->db->like('nama', $data['carinama']);
-		$this->db->like('status', $data['caristatus']);
-		$this->db->from('produk');
-		$config['total_rows'] = $this->db->count_all_results();
-		$data['total_rows']=$config['total_rows'];
-		$config['per_page'] = 10;
-
 		// cek value
 		// var_dump($config['total_rows']);
 		// die;
 
+		$data['start'] = $this->uri->segment(3);
+		$config['per_page'] = 10;
+		$filter=array(
+			'per_page'=>$config['per_page'],
+			'start'=> $data['start'],
+			'carinama'=>$data['carinama'],
+			'caristatus'=>$data['caristatus']
+		);
+		$list_data= $this->produk->getProduk($filter);
+		$config['total_rows'] = $list_data->num_rows();
+		$data['total_rows']=$config['total_rows'];
 		$this->pagination->initialize($config);
 		// $limit = $config['per_page'];
 		// $start = html_escape($this->input->get('per_page'));
 		
 		
-		$data['start']=$this->uri->segment(3);
-		$data['dataproduk']=$this->produk->getProduk($config['per_page'],$data['start'],$data['carinama'],$data['caristatus']);
+		
+		$data['dataproduk']=$list_data->result_array();
 
 		// print_r($dataproduk);
 		$data['_view']="produk/index";

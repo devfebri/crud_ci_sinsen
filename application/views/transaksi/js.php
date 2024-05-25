@@ -19,9 +19,31 @@
 				}
 			},
 		});
-
+		$(".dataTables_filter input")
+			.unbind() // Unbind previous default bindings
+			.bind("input", function(e) { // Bind our desired behavior
+				// If the length is 3 or more characters, or the user pressed ENTER, search
+				if (this.value.length >= 3 || e.keyCode == 13) {
+					// Call the API search function
+					table.search(this.value).draw();
+				}
+				// Ensure we clear the search if they backspace far enough
+				if (this.value == "") {
+					table.search("").draw();
+				}
+				return;
+			});
 
 		$('#btnCari').on('click', function() {
+			dtgltrx = $('#filtertanggaltransaksi').val();
+			dstatus = $('#filterstatus').val();
+			table.ajax.reload(null, false);
+		});
+
+		$('#btnReset').on('click', function() {
+			// alert('ok');
+			$('#filtertanggaltransaksi').val('');
+			$('#filterstatus').val('').change();
 			dtgltrx = $('#filtertanggaltransaksi').val();
 			dstatus = $('#filterstatus').val();
 			table.ajax.reload(null, false);
@@ -69,7 +91,7 @@
 			dtgltrx = $('#filtertanggaltransaksi').val();
 
 			// alert(valtanggal);
-			console.log([valstatus, valtanggal]);
+			// console.log([valstatus, valtanggal]);
 		});
 
 		$('#pilihproduk').on('change', function() {

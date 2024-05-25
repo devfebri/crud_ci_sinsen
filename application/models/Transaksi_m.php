@@ -27,7 +27,7 @@ class Transaksi_m extends CI_Model{
 			$jmlstring = strlen($_POST['search']['value']);
 			if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
 			{
-				if ($jmlstring >= 3 || $jmlstring == 0) {
+				// if ($jmlstring >= 3 || $jmlstring == 0) {
 					if ($i === 0) // looping awal
 					{
 						$this->db->group_start();
@@ -37,7 +37,7 @@ class Transaksi_m extends CI_Model{
 					}
 					if (count($this->column_search) - 1 == $i)
 						$this->db->group_end();
-				}
+				// }
 			}
 			$i++;
 		}
@@ -192,5 +192,9 @@ class Transaksi_m extends CI_Model{
 
 	public function deleteTransaksiDetailOld($where){
 		$this->db->delete('transaksi_detail', $where);
+	}
+
+	public function findtransaksiheader($where){
+		return $this->db->get_where('transaksi_header', $where)->row_array();
 	}
 }

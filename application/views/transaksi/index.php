@@ -16,6 +16,21 @@
  			<div class="card m-b-30">
 
  				<div class="card-body">
+ 					<?php if ($this->session->flashdata('status-success')) : ?>
+ 						<div class="alert alert-primary alert-dismissible fade show" role="alert">
+ 							<strong>Success to save!</strong> <?= $this->session->flashdata('status-success') ?>.
+ 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+ 								<span aria-hidden="true">&times;</span>
+ 							</button>
+ 						</div>
+ 					<?php elseif($this->session->flashdata('status-failed')) : ?>
+ 						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+ 							<strong>Failed to save!</strong> <?= $this->session->flashdata('status-failed') ?>.
+ 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+ 								<span aria-hidden="true">&times;</span>
+ 							</button>
+ 						</div>
+ 					<?php endif; ?>
  					<!-- <h4 class="header-title mt-0">TRANSAKSI
  						<a href="<?= base_url('Transaksi/tambahdata1'); ?>" class="btn btn-primary waves-effect waves-light float-right btn-small ml-2">Tambah Data</a>
 
@@ -35,7 +50,8 @@
  							<input type="date" class="form-control filter" id="filtertanggaltransaksi">
  						</div>
  						<div class="col-12">
- 							<button type="button" class="btn btn-primary btn-block" id="btnCari">Cari</button>
+ 							<button type="button" class="btn btn-primary btn-sm" id="btnCari">Cari</button>
+ 							<button type="button" class="btn btn-danger btn-sm" id="btnReset">Reset Search</button>
  						</div>
  						<br>
  						<br>
@@ -53,7 +69,7 @@
  								<th>Aksi</th>
  							</tr>
  						</thead>
- 						
+
  					</table>
 
  				</div>

@@ -25,10 +25,18 @@ class Transaksi extends CI_Controller {
 				$no++;
 				$row=array();
 
-				$btnEdit="<a href=".base_url('Transaksi/edit/'.$field->id_trx)." class=\"tabledit-edit-button btn btn-sm btn-warning\" style=\"float: none; margin: 5px;\"><span class=\"ti-pencil\"></span></a>";
-				$btnDelete = "<button type=\"button\" class=\"btn btn-outline-danger\" title=\"Hapus Data\" onclick=\"hapus('" . $field->id_trx . "')\">
-                    <i class=\"fa fa-trash\"></i>
-                </button>";
+				if($field->status==3){
+					$btnEdit = "<a href=\"#\" class=\"tabledit-edit-button btn btn-sm btn-warning\" onclick=\"return false;\" style=\"float: none; margin: 5px;\"><span class=\"ti-pencil\"></span></a>";
+					$btnDelete = "<button type=\"button\" class=\"btn btn-outline-danger\" title=\"Hapus Data\" disabled  onclick=\"hapus('" . $field->id_trx . "')\">
+						<i class=\"fa fa-trash\"></i>
+					</button>";
+				}else{
+
+					$btnEdit="<a href=".base_url('Transaksi/edit/'.$field->id_trx)." class=\"tabledit-edit-button btn btn-sm btn-warning\" style=\"float: none; margin: 5px;\"><span class=\"ti-pencil\"></span></a>";
+					$btnDelete = "<button type=\"button\" class=\"btn btn-outline-danger\" title=\"Hapus Data\" onclick=\"hapus('" . $field->id_trx . "')\">
+						<i class=\"fa fa-trash\"></i>
+					</button>";
+				}
 				$kodeTrx="<a href=". base_url('Transaksi/open') ."/". $field->id_trx.">$field->kode_trx</a>";
 				$row[]=$no;
 				$row[]=$kodeTrx;
@@ -110,37 +118,45 @@ class Transaksi extends CI_Controller {
 	public function kirimdataedit(){
 		$this->load->model("Transaksi_m","transaksi");
 		$data=$this->input->post();
-		// var_dump($data['id_trx']);
-		// die;
-		$dataheader = [
-			
-			'kode_trx'			=> $data['kode_trx'],
-			'nama_consumen'		=> $data['nama_consumen'],
-			'deskripsi'			=> $data['deskripsi'],
-			'status'			=> $data['status'],
-			'total'				=> $data['total'],
-		];
-		$where=[
+		
+		$where = [
 			'id_trx'			=> $data['id_trx'],
 		];
-		$this->transaksi->updateTransaksiHeader($where,$dataheader);
-			
-		$pilihproduk = $this->input->post('pilihproduk');
-		$this->transaksi->deleteTransaksiDetailOld($where);
-		if (count($pilihproduk) > 0) {
-			foreach ($pilihproduk as $item => $value) {
-				$datadetail = [
-					'id_trx'			=> $data['id_trx'],
-					'id_produk'			=> $data['pilihproduk'][$item],
-					'harga'				=> $data['harga'][$item],
-					'qty'				=> $data['qty'][$item],
-					'subtotal'			=> $data['subtotal'][$item]
-				];
-				$this->transaksi->inputTransaksiDetailNew($where, $datadetail);
+		$dTransaksi=$this->transaksi->findtransaksiheader($where);
+		$status=$dTransaksi['status'];
+		if($status!=3){
+			$dataheader = [
+
+				'kode_trx'			=> $data['kode_trx'],
+				'nama_consumen'		=> $data['nama_consumen'],
+				'deskripsi'			=> $data['deskripsi'],
+				'status'			=> $data['status'],
+				'total'				=> $data['total'],
+			];
+
+			$this->transaksi->updateTransaksiHeader($where, $dataheader);
+
+			$pilihproduk = $this->input->post('pilihproduk');
+			$this->transaksi->deleteTransaksiDetailOld($where);
+			if (count($pilihproduk) > 0) {
+				foreach ($pilihproduk as $item => $value) {
+					$datadetail = [
+						'id_trx'			=> $data['id_trx'],
+						'id_produk'			=> $data['pilihproduk'][$item],
+						'harga'				=> $data['harga'][$item],
+						'qty'				=> $data['qty'][$item],
+						'subtotal'			=> $data['subtotal'][$item]
+					];
+					$this->transaksi->inputTransaksiDetailNew($where, $datadetail);
+				}
 			}
+			$this->session->set_flashdata('status-success', 'Success, you successfully save in transasction..');
+			redirect(base_url('Transaksi/index'));
+		}else{
+			$this->session->set_flashdata('status-failed', 'Sorry, closed status for this transaction..');
+			redirect(base_url('Transaksi/index'));
 		}
-		redirect(base_url('Transaksi/index'));
-		// $id = $data["id_trx"];
+		
 		
 	}
 

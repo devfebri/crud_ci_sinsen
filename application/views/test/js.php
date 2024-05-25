@@ -83,16 +83,36 @@
 
 		});
 
-		// $('.filter').on('change', function() {
-		// 	dproduk = $('#filterproduk').val();
-		// 	dstatus = $('#filterstatus').val();
-		// 	table.ajax.reload(null, false);
-		// });
+		$(".dataTables_filter input")
+			.unbind() // Unbind previous default bindings
+			.bind("input", function(e) { // Bind our desired behavior
+				// If the length is 3 or more characters, or the user pressed ENTER, search
+				if (this.value.length >= 3 || e.keyCode == 13) {
+					// Call the API search function
+					table.search(this.value).draw();
+				}
+				// Ensure we clear the search if they backspace far enough
+				if (this.value == "") {
+					table.search("").draw();
+				}
+				return;
+			});
+
 		$('#btnCari').on('click', function() {
 			dproduk = $('#filterproduk').val();
 			dstatus = $('#filterstatus').val();
 			table.ajax.reload(null, false);
 		});
+
+		$('#btnReset').on('click', function() {
+			// alert('ok');
+			$('#filterproduk').val('').change();
+			$('#filterstatus').val('').change();
+			dproduk = $('#filterproduk').val();
+			dstatus = $('#filterstatus').val();
+			table.ajax.reload(null, false);
+		});
+
 
 	}
 
@@ -208,5 +228,6 @@
 			});
 			return false;
 		});
+
 	});
 </script>

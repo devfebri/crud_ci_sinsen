@@ -24,7 +24,7 @@ class Test_m extends CI_Model{
 			$jmlstring= strlen($_POST['search']['value']);
 			if ($_POST['search']['value']) // jika datatable mengirimkan pencarian dengan metode POST
 			{
-				if($jmlstring>=3|| $jmlstring == 0){
+				// if($jmlstring>=3|| $jmlstring == 0){
 					if ($i === 0) // looping awal
 					{
 						$this->db->group_start();
@@ -34,7 +34,7 @@ class Test_m extends CI_Model{
 					}
 					if (count($this->column_search) - 1 == $i)
 						$this->db->group_end();
-				}
+				// }	
 			}
 			$i++;
 		}

@@ -4,7 +4,14 @@
  		<div class="col-sm-12">
  			<div class="page-title-box">
  				<h4 class="page-title">Produk
+ 					<button type="button" class="btn btn-primary btn-sm float-right" id="tomboltambah" >
+ 						<i class="fa fa-plus-circle"></i> Tambah Produk
+ 					</button>
 
+ 					<button type="submit"  class="btn btn-sm btn-danger tombolHapusBanyak float-right mr-2">
+ 						<i class="fa fa-trash-o"></i> Hapus Banyak
+ 					</button>
+ 					<br>
  				</h4>
  			</div>
 
@@ -18,14 +25,7 @@
 
  				<?= form_open('test/deletemultiple', ['class' => 'formhapus']) ?>
  				<div class="card-body">
- 					<button type="button" class="btn btn-primary" id="tomboltambah">
- 						<i class="fa fa-plus-circle"></i> Tambah Produk
- 					</button>
 
- 					<button type="submit" class="btn btn-sm btn-danger tombolHapusBanyak">
- 						<i class="fa fa-trash-o"></i> Hapus Banyak
- 					</button>
- 					<br>
  					<div class="row">
  						<div class="col-6">
  							<h6 class="text-muted fw-400"><b>Produk</b></h6>
@@ -44,11 +44,13 @@
  								<option value="0">Tidak</option>
  							</select>
  						</div>
-						<div class="col-12">
-							<button type="button" class="btn btn-primary btn-block" id="btnCari">Cari</button>
-						</div>
-						<br>
-						<br>
+ 						<div class="col-12">
+ 							<button type="button" class="btn btn-primary" id="btnCari">Cari</button>
+ 							<!-- <br> -->
+ 							<button type="button" class="btn btn-danger" id="btnReset">Reset Search</button>
+ 						</div>
+ 						<br>
+ 						<br>
  					</div>
  					<table id="datatable2" class="table table-bordered">
  						<thead>

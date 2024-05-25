@@ -30,38 +30,6 @@
  		});
  		$('#tbody').append(dataProdukHtml);
 
- 		// $('.pilihproduk-'.count).on('change', function() {
- 		// 	var rowke = $(this).data('id');
- 		// 	var id_data = $(this).val();
- 		// 	alert(rowke);
- 		// 	if (id_data != '') {
- 		// 		$.ajax({
- 		// 			url: "<?php echo base_url(); ?>Transaksi/getProduk",
- 		// 			type: "POST",
- 		// 			dataType: "json",
- 		// 			data: {
- 		// 				"id_data": id_data
- 		// 			},
- 		// 			cache: false,
- 		// 			success: function(data) {
- 		// 				$('.harga-' + rowke).val(data['harga']);
- 		// 			}
- 		// 		});
- 		// 		return false;
- 		// 	} else {
- 		// 		$('.harga-' + rowke).val('');
- 		// 		$('#subtotal-' + rowke).val('');
- 		// 		$('#qty-' + rowke).val('');
-
- 		// 		var sum_value = 0;
- 		// 		$('.value').each(function() {
- 		// 			sum_value += +$(this).val();
- 		// 			$('#total').val(sum_value);
- 		// 		});
- 		// 	}
- 		// });
- 		// -------------------------------------------------------------
-
  		$('#btn_tambahproduk').click(function() {
  			// alert(count);
  			let dynamicRowHTML = `
